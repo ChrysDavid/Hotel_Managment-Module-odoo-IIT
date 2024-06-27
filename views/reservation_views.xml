@@ -1,0 +1,74 @@
+<odoo>
+    <record id="view_reservation_form" model="ir.ui.view">
+        <field name="name">reservation.form</field>
+        <field name="model">hotel.reservation</field>
+        <field name="arch" type="xml">
+            <form string="Reservation">
+                <header>
+                    <button string="Confirm" type="object" name="action_confirm" states="draft"/>
+                    <button string="Cancel" type="object" name="action_cancel" states="draft,confirmed"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,confirmed,cancelled"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="client_id"/>
+                        <field name="room_id"/>
+                        <field name="checkin_date"/>
+                        <field name="checkout_date"/>
+                        <field name="status"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_reservation_tree" model="ir.ui.view">
+        <field name="name">reservation.tree</field>
+        <field name="model">hotel.reservation</field>
+        <field name="arch" type="xml">
+            <tree string="Reservations">
+                <field name="reservation_number"/>
+                <field name="client_id"/>
+                <field name="room_id"/>
+                <field name="checkin_date"/>
+                <field name="checkout_date"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_reservation_kanban" model="ir.ui.view">
+        <field name="name">reservation.kanban</field>
+        <field name="model">hotel.reservation</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="reservation_number"/>
+                <field name="client_id"/>
+                <field name="room_id"/>
+                <field name="checkin_date"/>
+                <field name="checkout_date"/>
+                <field name="status"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <strong><field name="reservation_number"/></strong>
+                            <div><field name="client_id"/></div>
+                            <div><field name="room_id"/></div>
+                            <div><field name="checkin_date"/></div>
+                            <div><field name="checkout_date"/></div>
+                            <div><field name="status"/></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_reservation" model="ir.actions.act_window">
+        <field name="name">Reservations</field>
+        <field name="res_model">hotel.reservation</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <menuitem id="menu_hotel_reservation" name="Reservations" parent="menu_hotel_management" action="action_reservation"/>
+</odoo>

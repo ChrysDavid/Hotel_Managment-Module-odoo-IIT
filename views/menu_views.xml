@@ -1,0 +1,14 @@
+<odoo>
+    <menuitem id="menu_hotel_management" name="Hotel Management" sequence="10"/>
+
+    <menuitem id="menu_hotel_building" name="Buildings" parent="menu_hotel_management" action="action_building"/>
+    <menuitem id="menu_hotel_room" name="Rooms" parent="menu_hotel_management" action="action_room"/>
+    <menuitem id="menu_hotel_amenity" name="Amenities" parent="menu_hotel_management" action="action_amenity"/>
+    <menuitem id="menu_hotel_client" name="Clients" parent="menu_hotel_management" action="action_client"/>
+    <menuitem id="menu_hotel_invoice" name="Invoices" parent="menu_hotel_management" action="action_invoice"/>
+    <menuitem id="menu_hotel_payment" name="Payments" parent="menu_hotel_management" action="action_payment"/>
+    <menuitem id="menu_hotel_planning" name="Planning" parent="menu_hotel_management" action="action_planning"/>
+    <menuitem id="menu_hotel_reservation" name="Reservations" parent="menu_hotel_management" action="action_reservation"/>
+    <menuitem id="menu_hotel_staff" name="Staff" parent="menu_hotel_management" action="action_staff"/>
+    <menuitem id="menu_hotel_space" name="Spaces" parent="menu_hotel_management" action="action_space"/>
+</odoo>

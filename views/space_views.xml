@@ -1,0 +1,63 @@
+<odoo>
+    <record id="view_space_form" model="ir.ui.view">
+        <field name="name">space.form</field>
+        <field name="model">hotel.space</field>
+        <field name="arch" type="xml">
+            <form string="Space">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="type_space"/>
+                        <field name="capacity"/>
+                        <field name="availability"/>
+                        <field name="rate"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_space_tree" model="ir.ui.view">
+        <field name="name">space.tree</field>
+        <field name="model">hotel.space</field>
+        <field name="arch" type="xml">
+            <tree string="Spaces">
+                <field name="name"/>
+                <field name="type_space"/>
+                <field name="capacity"/>
+                <field name="availability"/>
+                <field name="rate"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_space_kanban" model="ir.ui.view">
+        <field name="name">space.kanban</field>
+        <field name="model">hotel.space</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="type_space"/>
+                <field name="capacity"/>
+                <field name="availability"/>
+                <field name="rate"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <strong><field name="name"/></strong>
+                            <div><field name="capacity"/></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_space" model="ir.actions.act_window">
+        <field name="name">Spaces</field>
+        <field name="res_model">hotel.space</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <menuitem id="menu_hotel_space" name="Spaces" parent="menu_hotel_management" action="action_space"/>
+</odoo>

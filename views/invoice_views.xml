@@ -1,0 +1,80 @@
+<odoo>
+    <record id="view_invoice_form" model="ir.ui.view">
+        <field name="name">invoice.form</field>
+        <field name="model">hotel.invoice</field>
+        <field name="arch" type="xml">
+            <form string="Invoice">
+                <sheet>
+                    <group>
+                        <field name="number"/>
+                        <field name="client_id"/>
+                        <field name="amount"/>
+                        <field name="date_create"/>
+                        <field name="date_due"/>
+                        <field name="state"/>
+                    </group>
+                    <notebook>
+                        <page string="Payments">
+                            <field name="payment_ids">
+                                <tree string="Payments">
+                                    <field name="reference"/>
+                                    <field name="date"/>
+                                    <field name="amount"/>
+                                    <field name="method"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_invoice_tree" model="ir.ui.view">
+        <field name="name">invoice.tree</field>
+        <field name="model">hotel.invoice</field>
+        <field name="arch" type="xml">
+            <tree string="Invoices">
+                <field name="number"/>
+                <field name="client_id"/>
+                <field name="amount"/>
+                <field name="date_create"/>
+                <field name="date_due"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_invoice_kanban" model="ir.ui.view">
+        <field name="name">invoice.kanban</field>
+        <field name="model">hotel.invoice</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="number"/>
+                <field name="client_id"/>
+                <field name="amount"/>
+                <field name="date_create"/>
+                <field name="date_due"/>
+                <field name="state"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <strong><field name="number"/></strong>
+                            <div><field name="client_id"/></div>
+                            <div><field name="amount"/></div>
+                            <div><field name="state"/></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_invoice" model="ir.actions.act_window">
+        <field name="name">Invoices</field>
+        <field name="res_model">hotel.invoice</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <menuitem id="menu_hotel_invoice" name="Invoices" parent="menu_hotel_management" action="action_invoice"/>
+</odoo>

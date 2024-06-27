@@ -1,0 +1,117 @@
+<odoo>
+    <record id="view_building_form" model="ir.ui.view">
+        <field name="name">building.form</field>
+        <field name="model">hotel.building</field>
+        <field name="arch" type="xml">
+            <form string="Building">
+                <group>
+                    <field name="name"/>
+                    <field name="location"/>
+                    <field name="number_of_floors"/>
+                </group>
+                <notebook>
+                    <!--Room -->
+                    <page string="Rooms">
+                        <field name="rooms">
+                            <tree string="Rooms">
+                                <field name="room_number"/>
+                                <field name="room_type"/>
+                                <field name="status"/>
+                                <field name="price"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <!--Space-->
+                    <page string="Spaces">
+                        <field name="spaces">
+                            <tree string="Spaces">
+                                <field name="name"/>
+                                <field name="type_space"/>
+                                <field name="capacity"/>
+                                <field name="availability"/>
+                                <field name="rate"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <!--Staff-->
+                    <page string="Staff">
+                        <field name="staff">
+                            <tree string="Staff">
+                                <field name="name"/>
+                                <field name="job_position"/>
+                                <field name="hire_date"/>
+                                <field name="email"/>
+                                <field name="phone"/>
+                                <field name="salary"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <!--Amenities-->
+                    <page string="Amenities">
+                        <field name="amenities">
+                            <tree string="Amenities">
+                                <field name="name"/>
+                                <field name="description"/>
+                                <field name="type"/>
+                                <field name="cost_amenity"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <!--Reservation-->
+<!--                    <page string="Reservations">-->
+<!--                        <field name="reservations">-->
+<!--                            <tree string="Reservations">-->
+<!--                                <field name="reservation_number"/>-->
+<!--                                <field name="client_id"/>-->
+<!--                                <field name="room_id"/>-->
+<!--                                <field name="checkin_date"/>-->
+<!--                                <field name="checkout_date"/>-->
+<!--                                <field name="status"/>-->
+<!--                            </tree>-->
+<!--                        </field>-->
+<!--                    </page>-->
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_building_tree" model="ir.ui.view">
+        <field name="name">building.tree</field>
+        <field name="model">hotel.building</field>
+        <field name="arch" type="xml">
+            <tree string="Buildings">
+                <field name="name"/>
+                <field name="location"/>
+                <field name="number_of_floors"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_building_kanban" model="ir.ui.view">
+        <field name="name">building.kanban</field>
+        <field name="model">hotel.building</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="location"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <strong><field name="name"/></strong>
+                            <div><field name="location"/></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_building" model="ir.actions.act_window">
+        <field name="name">Buildings</field>
+        <field name="res_model">hotel.building</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <menuitem id="menu_hotel_management" name="Hotel Management" web_icon="hotel_management,static/description/hotel.jpg" sequence="10"/>
+    <menuitem id="menu_hotel_management_buildings" name="Buildings" parent="menu_hotel_management" action="action_building"/>
+</odoo>

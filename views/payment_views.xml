@@ -1,0 +1,66 @@
+<odoo>
+    <record id="view_payment_form" model="ir.ui.view">
+        <field name="name">payment.form</field>
+        <field name="model">hotel.payment</field>
+        <field name="arch" type="xml">
+            <form string="Payment">
+                <sheet>
+                    <group>
+                        <field name="reference"/>
+                        <field name="client_id"/>
+                        <field name="invoice_id"/>
+                        <field name="amount"/>
+                        <field name="date"/>
+                        <field name="method"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_payment_tree" model="ir.ui.view">
+        <field name="name">payment.tree</field>
+        <field name="model">hotel.payment</field>
+        <field name="arch" type="xml">
+            <tree string="Payments">
+                <field name="reference"/>
+                <field name="client_id"/>
+                <field name="invoice_id"/>
+                <field name="amount"/>
+                <field name="date"/>
+                <field name="method"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_payment_kanban" model="ir.ui.view">
+        <field name="name">payment.kanban</field>
+        <field name="model">hotel.payment</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="reference"/>
+                <field name="client_id"/>
+                <field name="invoice_id"/>
+                <field name="amount"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <strong><field name="reference"/></strong>
+                            <div><field name="client_id"/></div>
+                            <div><field name="invoice_id"/></div>
+                            <div><field name="amount"/></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_payment" model="ir.actions.act_window">
+        <field name="name">Payments</field>
+        <field name="res_model">hotel.payment</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <menuitem id="menu_hotel_payment" name="Payments" parent="menu_hotel_management" action="action_payment"/>
+</odoo>

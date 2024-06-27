@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="client_signup_form" name="Client Signup Form">
+            <div class="container">
+                <t t-call="website.layout">
+                    <div class="oe_structure">
+                        <div class="row mt32 mb32">
+                            <div class="col-12 text-center">
+                                <h1>Client Signup</h1>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <form action="/signup" method="post">
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                    <div class="form-group">
+                                        <label for="name">Name</label>
+                                        <input type="text" id="name" name="name" class="form-control" required="required"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" id="email" name="email" class="form-control" required="required"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Phone</label>
+                                        <input type="text" id="phone" name="phone" class="form-control" required="required"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <input type="text" id="address" name="address" class="form-control"/>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </template>
+
+        <template id="client_signup_thankyou" name="Client Signup Thank You">
+        <div class="container">
+            <t t-call="website.layout">
+                <div class="oe_structure">
+                    <div class="row mt32 mb32">
+                        <div class="col-12 text-center">
+                            <h1>Thank You for Signing Up!</h1>
+                            <a href="/reservation/" class="btn btn-primary mt16">Make Your Reservation Now</a>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </template>
+    </data>
+</odoo>

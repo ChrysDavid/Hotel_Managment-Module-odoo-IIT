@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="hotel_management.hotel_reservation_page" name="Hotel Reservation Page">
+        <div class="container">
+            <t t-call="website.layout">
+                <div class="oe_structure">
+                    <div class="row mt32 mb32">
+                        <div class="col-12 text-center">
+                            <h1>Make a Reservation</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <form action="/reservation/submit" method="post">
+                                <!-- CSRF token -->
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                                <!-- Client field is hidden -->
+                                <input type="hidden" id="client_id" name="client_id" t-att-value="client_id"/>
+
+                                <div class="form-group">
+                                    <label for="building_id">Building</label>
+                                    <select id="building_id" name="building_id" class="form-control" required="required">
+                                        <t t-foreach="buildings" t-as="building">
+                                            <option t-att-value="building.id"><t t-esc="building.name"/></option>
+                                        </t>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="room_id">Room</label>
+                                    <select id="room_id" name="room_id" class="form-control" required="required">
+                                        <t t-foreach="rooms" t-as="room">
+                                            <option t-att-value="room.id" t-att-data-building="room.building_id.id"><t t-esc="room.room_number"/></option>
+                                        </t>
+                                    </select>
+                                </div>
+                                <!-- Hidden field for check-in date -->
+                                <input type="hidden" id="checkin_date" name="checkin_date" t-att-value="checkin_date"/>
+
+                                <div class="form-group">
+                                    <label for="checkout_date">Check-out Date</label>
+                                    <input type="date" id="checkout_date" name="checkout_date" class="form-control" required="required"/>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Reserve</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </template>
+</odoo>

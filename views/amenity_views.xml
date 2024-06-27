@@ -1,0 +1,60 @@
+<odoo>
+    <record id="view_amenity_form" model="ir.ui.view">
+        <field name="name">amenity.form</field>
+        <field name="model">hotel.amenity</field>
+        <field name="arch" type="xml">
+            <form string="Amenity">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="type"/>
+                        <field name="cost_amenity"/>
+                        <field name="image" widget="image" class="oe_avatar" options="{'size': [90, 90]}"/> <!-- Champ image avec widget -->
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_amenity_tree" model="ir.ui.view">
+        <field name="name">amenity.tree</field>
+        <field name="model">hotel.amenity</field>
+        <field name="arch" type="xml">
+            <tree string="Amenities">
+                <field name="name"/>
+                <field name="type"/>
+                <field name="cost_amenity"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_amenity_kanban" model="ir.ui.view">
+        <field name="name">amenity.kanban</field>
+        <field name="model">hotel.amenity</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="type"/>
+                <field name="cost_amenity"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <strong><field name="name"/></strong>
+                            <div><field name="type"/></div>
+                            <div><field name="cost_amenity"/></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_amenity" model="ir.actions.act_window">
+        <field name="name">Amenities</field>
+        <field name="res_model">hotel.amenity</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <menuitem id="menu_hotel_amenity" name="Amenities" parent="menu_hotel_management" action="action_amenity"/>
+</odoo>

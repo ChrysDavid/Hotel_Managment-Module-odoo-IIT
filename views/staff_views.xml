@@ -1,0 +1,68 @@
+<odoo>
+    <record id="view_staff_form" model="ir.ui.view">
+        <field name="name">staff.form</field>
+        <field name="model">hotel.staff</field>
+        <field name="arch" type="xml">
+            <form string="Staff">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="job_position"/>
+                        <field name="hire_date"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                        <field name="salary"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_staff_tree" model="ir.ui.view">
+        <field name="name">staff.tree</field>
+        <field name="model">hotel.staff</field>
+        <field name="arch" type="xml">
+            <tree string="Staff">
+                <field name="name"/>
+                <field name="job_position"/>
+                <field name="hire_date"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="salary"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_staff_kanban" model="ir.ui.view">
+        <field name="name">staff.kanban</field>
+        <field name="model">hotel.staff</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="job_position"/>
+                <field name="hire_date"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="salary"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <strong><field name="name"/></strong>
+                            <div><field name="job_position"/></div>
+                            <div><field name="email"/></div>
+                            <div><field name="phone"/></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_staff" model="ir.actions.act_window">
+        <field name="name">Staff</field>
+        <field name="res_model">hotel.staff</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <menuitem id="menu_hotel_staff" name="Staff" parent="menu_hotel_management" action="action_staff"/>
+</odoo>

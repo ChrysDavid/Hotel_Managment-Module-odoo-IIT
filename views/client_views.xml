@@ -1,0 +1,61 @@
+<odoo>
+    <record id="view_client_form" model="ir.ui.view">
+        <field name="name">client.form</field>
+        <field name="model">hotel.client</field>
+        <field name="arch" type="xml">
+            <form string="Client">
+                <sheet>
+                    <group>
+                        <field name="client_id"/>
+                        <field name="name"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                        <field name="address"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_client_tree" model="ir.ui.view">
+        <field name="name">client.tree</field>
+        <field name="model">hotel.client</field>
+        <field name="arch" type="xml">
+            <tree string="Clients">
+                <field name="client_id"/>
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_client_kanban" model="ir.ui.view">
+        <field name="name">client.kanban</field>
+        <field name="model">hotel.client</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <strong><field name="name"/></strong>
+                            <div><field name="email"/></div>
+                            <div><field name="phone"/></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_client" model="ir.actions.act_window">
+        <field name="name">Clients</field>
+        <field name="res_model">hotel.client</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <menuitem id="menu_hotel_client" name="Clients" parent="menu_hotel_management" action="action_client"/>
+</odoo>
